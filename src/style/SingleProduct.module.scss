@@ -1,0 +1,73 @@
+@import './variables.scss';
+
+.imgContainer {
+  display: flex;
+  justify-content: flex-start; 
+  margin: 50px 0 0 0;
+}
+
+.imgContainer img {
+  max-width: 250px;
+  display: block;
+} 
+
+.infoContainer {
+  padding-left: 30px;
+  border-left: 1px solid grey;
+}
+
+.ratingContainer {
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+.priceTag {
+  background-color: #59A5D8;
+  color: $neutralColorTwo;
+  text-align: center;
+  padding: 0.65rem;
+  border-radius: 50%;
+  max-width: 100px;
+}
+
+.categoryTag {
+  background-color: #C3DBC5;
+  padding: 0.85rem;
+  width: 100%;
+  border-radius: 5px;
+}
+  
+.buttonContainer {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+
+  .productBtn {
+    background: #FF7D00;
+    border: 1px solid;
+    border-radius: 3px;
+    margin-top: 10px;
+    padding: 10px;
+    border-color: #a88734 #9c7e31 #846a29;
+    color: #fff;
+  }
+  
+  .productBtn:hover {
+    background: #ffa44e;
+    transition: ease-in-out 0.2s;
+  }
+
+}
+
+
+@media screen and (min-width: 992px) {
+  .imgContainer {
+    width: 95vw;
+    max-width: 1170px;
+  }
+}
+
+
+

@@ -1,0 +1,35 @@
+@import './variables.scss';
+
+.formContainer  {
+  background-color: #ececec;
+  border: 1px solid lightgrey;
+  padding: 25px;
+  margin-top: 20px;
+  margin-bottom: 90px;
+  border-radius: 5px;
+  
+  .headerLogo {
+    width: 150px;
+    margin: 0 20px;
+    margin-top: 18px;
+    object-fit: contain;
+  }
+
+  .productBtn {
+    background: #FF7D00;
+    border: 1px solid;
+    border-radius: 3px;
+    margin-top: 10px;
+    padding: 10px;
+    border-color: #a88734 #9c7e31 #846a29;
+    color: #111;
+  }
+
+  .productBtn:hover {
+    background: #ffa44e;
+    transition: ease-in-out 0.2s;
+  }
+
+}
+  
+ 

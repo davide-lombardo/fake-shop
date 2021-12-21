@@ -1,0 +1,53 @@
+@import './variables.scss';
+
+.home {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 80px;
+
+  .productContainer {
+    display: flex;
+    width: 78%;
+    padding: 20px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 58%;
+    padding: 0;
+  }
+
+  .filters {
+    background-color: #59A5D8;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    margin: 15px 30px;
+    height: 60vh;
+
+    .subtotal {
+      font-size: 18px !important;
+    }
+    
+    .total {
+      font-weight: 700px !important;
+      font-size: 17px !important;
+    }
+    
+    .checkoutBtn {
+      display: flex;
+      margin-top: 140px;
+    }
+
+  }
+
+}
+
+
+
+
+
+
+
+ 

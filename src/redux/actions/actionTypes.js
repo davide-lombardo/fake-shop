@@ -1,0 +1,18 @@
+
+export const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
+export const FETCH_SINGLE_PRODUCT = 'FETCH_SINGLE_PRODUCT';
+export const LOADING = 'LOADING';
+export const SET_USER = 'SET_USER';
+export const ADD_TO_BASKET = 'ADD_TO_BASKET';
+export const REMOVE_FROM_BASKET = 'REMOVE_FROM_BASKET';
+export const CHANGE_CART_QTY = 'CHANGE_CART_QTY';
+export const FETCH_PRODUCTS_HOME = 'FETCH_PRODUCTS_HOME';
+export const LOAD_CURRENT_ITEM = 'LOAD_CURRENT_ITEM';
+
+
+
+
+
+
+
+
