@@ -8,7 +8,7 @@ import { fetchProducts } from '../redux/actions/productActions'
 
 const Searchbar = () => {
 
-    const [search, setSearch] = useState('')
+    const [ search, setSearch ] = useState('')
 
     const dispatch = useDispatch()
 

@@ -1,26 +1,57 @@
 
 import {
     LOADING,
-    SET_USER,
+    REGISTER_START,
+    REGISTER_SUCCESS, 
+    REGISTER_FAIL, 
+    LOGIN_START, 
+    LOGIN_SUCCESS, 
+    LOGIN_FAIL,
+    LOGOUT_START, 
+    LOGOUT_SUCCESS, 
+    LOGOUT_FAIL 
 } from '../actions/actionTypes'
 
 export const initialState = {
-    user: null,
+    currentUser: null,
     loading: false,
+    error: null,
 }
 
 export default function LoginReducer(state = initialState, action) {
     switch(action.type) {
-        case SET_USER: 
+        case REGISTER_START: 
+        case LOGIN_START:
+        case LOGOUT_START: 
             return {
                 ...state,
-                user: action.user
+                loading: true,
             }
-            case LOADING:
-                return {
-                    ...state,
-                    loading: true,
-                };    
+        case LOGOUT_SUCCESS: 
+        return {
+            ...state,
+            currentUser: null,
+        }
+        case REGISTER_SUCCESS:
+        case LOGIN_SUCCESS: 
+            return {
+                ...state,
+                loading: false,
+                currentUser: action.payload,
+            }
+        case REGISTER_FAIL:
+        case LOGIN_FAIL:
+        case LOGOUT_FAIL:  
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            }
+        case LOADING:
+            return {
+                ...state,
+                loading: true,
+            };    
         default:
             return state
     }

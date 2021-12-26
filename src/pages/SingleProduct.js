@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 
 import styles from '../style/SingleProduct.module.scss'
-import { TrashIcon } from '@heroicons/react/solid';
+//import { TrashIcon } from '@heroicons/react/solid';
 
 //import { StarIcon } from '@heroicons/react/solid';
 
@@ -14,14 +14,14 @@ import PropTypes from 'prop-types'
 import { useParams, Link } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSingleProduct, setLoading, addToBasket, removeFromBasket } from '../redux/actions/productActions'
+import { fetchSingleProduct, setLoading, addToBasket } from '../redux/actions/productActions'
 
 
 const SingleProduct = () => {
 
   const { product } = useSelector(state => ({...state.shop}))
   const { loading } = useSelector(state => ({...state.shop}))
-  const { basket } = useSelector(state => ({ ...state.shop}))
+  //const { basket } = useSelector(state => ({ ...state.shop}))
   const { id } = useParams()
 
   const dispatch = useDispatch();

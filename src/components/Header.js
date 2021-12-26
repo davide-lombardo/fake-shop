@@ -17,6 +17,7 @@ import { useSelector, useDispatch } from "react-redux";
 const Header = () => {
     
     const { basket } = useSelector(state => ({ ...state.shop}))
+    const { currentUser } = useSelector(state => ({ ...state.login}))
     
     const [ basketCount, setBasketCount ] = useState(0)
 
@@ -27,7 +28,8 @@ const Header = () => {
         basket.forEach((item) => { count += item.qty; });
 
         setBasketCount(count);
-    }, [basket, basketCount]);
+        console.log(currentUser)
+    }, [basket, basketCount, currentUser]);
 
 
     const basketList = basket.map((product, index) => {
@@ -62,7 +64,7 @@ const Header = () => {
         <>
         <header className={styles.Container}>
 
-            <Link to='/'>
+            <Link to="/">
                 <img 
                     src={logo} 
                     alt='logo'
@@ -73,10 +75,10 @@ const Header = () => {
             <Searchbar />
                 
             <div className={styles.headerNav}>
-                <Link to='/login' className={styles.headerOption}>
+                <Link to="/login" className={styles.headerOption}>
                     <div>
-                        <span className={styles.headerOptionLineOne}>Hello Guest</span><br/>
-                        <span className={styles.headerOptionLineTwo}>Sign In</span>
+                        <span className={styles.headerOptionLineOne}>Hello {!currentUser ? 'Guest' : currentUser}</span><br/>
+                        <span className={styles.headerOptionLineTwo}>{currentUser ? 'Sign Out' : 'Sign In'}</span>
                     </div>
                 </Link>
             </div>
@@ -119,5 +121,3 @@ export default Header
 //     }
 //   }
 
-/* {!user ? 'Guest' : user.email}
-{user ? 'Sign Out' : 'Sign In'} */

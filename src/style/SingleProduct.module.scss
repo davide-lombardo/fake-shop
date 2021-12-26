@@ -45,17 +45,18 @@
   gap: 10px 20px;
 
   .productBtn {
-    background: #FF7D00;
+    background-color: #FF7D00;
+    color: $mainWhite;
     border: 1px solid;
     border-radius: 3px;
     margin-top: 10px;
     padding: 10px;
     border-color: #a88734 #9c7e31 #846a29;
-    color: #fff;
+    
   }
   
   .productBtn:hover {
-    background: #ffa44e;
+    background-color: #ffa44e;
     transition: ease-in-out 0.2s;
   }
 

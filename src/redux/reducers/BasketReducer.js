@@ -4,14 +4,12 @@ import {
     ADD_TO_BASKET,
     REMOVE_FROM_BASKET,
     CHANGE_CART_QTY,
-    LOAD_CURRENT_ITEM, 
 } from '../actions/actionTypes'
 
 export const initialState = {
     basket: [],
     products: [],
     loading: false,
-    currentItem: [],
 }
 
 
@@ -40,11 +38,6 @@ export default function BasketReducer(state = initialState, action) {
             return {
                 ...state, 
                 basket: state.basket.filter(item => item.id !== action.payload)
-            };
-        case LOAD_CURRENT_ITEM:
-            return {
-                ...state,
-                currentItem: action.payload
             };
         case LOADING:
         return {

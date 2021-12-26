@@ -8,7 +8,6 @@ import {
     ADD_TO_BASKET,
     REMOVE_FROM_BASKET,
     CHANGE_CART_QTY,
-    LOAD_CURRENT_ITEM,  
 } from './actionTypes';
 
 
@@ -87,17 +86,6 @@ export const changeCardQty = (itemId, value) => {
     }
 }
 
-export const loadCurrentItem = (id) => (dispatch) => {
-    axios
-        .get(`https://fakestoreapi.com/products/${id}`)
-        .then(response =>
-            dispatch({
-                type: LOAD_CURRENT_ITEM,
-                payload: response.data
-            })
-        )
-        .catch(err => console.log(err));
-}
 
 export const saveToLocalStorage = (state) => {
     try {
@@ -108,13 +96,13 @@ export const saveToLocalStorage = (state) => {
   };
   
 export const loadFromLocalStorage = () => {
-try {
-    const stateStr = localStorage.getItem('state');
-    return stateStr ? JSON.parse(stateStr) : undefined;
-} catch (err) {
-    console.error(err);
-    return undefined;
-}
+    try {
+        const stateStr = localStorage.getItem('state');
+        return stateStr ? JSON.parse(stateStr) : undefined;
+    } catch (err) {
+        console.error(err);
+        return undefined;
+    }
 };
 
 // export const saveBaskestToStorage = (itemId) => {

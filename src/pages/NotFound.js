@@ -1,8 +1,7 @@
-import React from 'react'
 import styles from '../style/Error.module.scss'
 import { Link } from 'react-router-dom'
 
-function Error() {
+function NotFound() {
     return (
         <div className={styles.banner}>
         <div className={styles.sectionTitle}>
@@ -16,4 +15,4 @@ function Error() {
     )
 }
 
-export default Error
+export default NotFound

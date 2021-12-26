@@ -1,165 +1,183 @@
-import React from 'react'
-import { useRef } from 'react'
+import { useState } from 'react'
 
 import styles from '../style/Login.module.scss'
-
 import logo from '../images/logo.png';
+import { EyeIcon } from '@heroicons/react/outline';
+import { EyeOffIcon } from '@heroicons/react/outline';
 
-import Loading from '../components/Loading'
+
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 
-import { logOut, logIn, signIn, useAuth } from '../firebase'
-
-import { setLoading } from '../redux/actions/productActions'
+import { useSelector, useDispatch } from 'react-redux'
 
 import { Link } from 'react-router-dom'
 
-import { useSelector } from 'react-redux'
+//import { useFirebase } from "react-redux-firebase";
+//import { logOut, logIn, signIn } from '../firebaseConfig'
+import { loginInitiate } from '../redux/actions/authActions'
 
 
 
-function Login() {
+const Login = () => {
+
+    const [ state, setState ] = useState({
+        email: '',
+        password: '',
+    })
+
+    const { email, password } = state
+
+    const { currentUser } = useSelector((state) => state.login)
+
+    const [ passwordShown, setPasswordShown ] = useState(false)
+
+    const togglePasswordVisiblity = () => {
+        setPasswordShown(passwordShown ? false : true);
+    };
+
+    const dispatch = useDispatch()
+
+    // const firebase = useFirebase()
+
+    // const emailRef = useRef()
+    // const passwordRef = useRef()
     
-    const currentUser = useAuth()
-
-    const emailRef = useRef()
-    const passwordRef = useRef()
-
-    const { loading } = useSelector(state => ({...state.login}))
-
-    async function handleRegister() {
-        setLoading(true)
-        try {
-            await signIn(emailRef.current.value, passwordRef.current.value)
-        } catch {
-            alert('error')
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        if( !email || !password ) {
+            return
         }
-        setLoading(false)
+        dispatch(loginInitiate(email, password))
+        setState({email: '', password: ''})
     }
 
-    async function handleLogOut() {
-        setLoading(true)
-        try {
-            await logOut()
-        } catch {
-            alert('error')
-        }
-        setLoading(false)    
-    }
+    const handleChange = (event) => {
+        let { name, value } = event.target
+        setState({ ...state, [name]: value })
 
-    async function handleLogIn() {
-        setLoading(true)
-        try {
-            await logIn(emailRef.current.value, passwordRef.current.value)
-        } catch {
-            alert('error')
-        }
-        setLoading(false)
     }
 
 
-
-    //const navigate = useNavigate()
-
-    // const [email, setEmail] = useState('')
-    // const [password, setPassword] = useState('')
-
-    // const handleSignIn = (event) => {
-    //     event.prevent.default()
-
-    //     auth
-    //         .signInWithEmailAndPassword(email, password)
-    //         .then(auth => {
-    //             navigate('/')
-    //         })
-    //         .catch(error => alert(error.message))
+    // async function handleRegister() {
+        
+    //     try {
+    //         await signIn(emailRef.current.value, passwordRef.current.value)
+    //     } catch {
+    //         alert('error')
+    //     }
+      
     // }
 
-
-
-    // const handleRegister = (event) => {
-    //     event.preventDefault();
-
-    //     auth
-    //         .createUserWithEmailAndPassword(email, password)
-    //         .then((auth) => {
-    //             if (auth) {
-    //                 navigate('/')
-    //             }
-    //         })
-    //         .catch(error => alert(error.message))
+    // async function handleLogOut() {
+       
+    //     try {
+    //         await logOut()
+    //     } catch {
+    //         alert('error')
+    //     }
+     
     // }
 
-    // const handleEmail = (event) => {
-    //     setEmail(event.target.value)
+    // async function handleLogIn() {
+        
+    //     try {
+    //         await logIn(emailRef.current.value, passwordRef.current.value)
+    //     } catch {
+    //         alert('error')
+    //     }
+       
     // }
 
-    // const handlePassword = (event) => {
-    //     setPassword(event.target.value)
-    // }
+  
+
 
     return (
     <>
     <Header/>
-    {
-    loading ? <Loading/> :
+
     <div className="d-flex flex-row justify-content-center my-3">
 
-    <div>Curruently logged in as: {currentUser?.email}</div>
+        <div>Curruently logged in as: {currentUser?.email}</div>
 
         <div className="row">
             <div className="col-md">
-                <form className={styles.formContainer}>
-                    <div>
-                        <div>Sign In</div>          
-                        <div className="form-group my-3">
-                            <label htmlFor="exampleInputEmail1">Email</label>
-                            <input type="email" ref={emailRef} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email"></input>
-                            <small id="emailHelp" className="form-text text-m.signInuted"></small>
+                <form className={styles.formContainer} onSubmit={handleSubmit}>
+                    <h2 className="text-center">Log in</h2>
+                    
+                    <div className="form-group my-3">
+                        <label htmlFor="exampleInputEmail1">Email</label>
+                        <input 
+                            type="email" 
+                            name="email"
+                            className="form-control my-2" 
+                            id="inputEmail" 
+                            aria-describedby="emailHelp" 
+                            placeholder="Email Address"
+                            value={email} 
+                            onChange={handleChange}
+                            required 
+                        />
+                        <small id="emailHelp" className="form-text text-m.signInuted"></small>
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="exampleInputPassword1">Password</label>
+                        <input 
+                            type={passwordShown ? "text" : "password"}
+                            name="password"
+                            className="form-control my-2" 
+                            id="inputPassword" 
+                            placeholder="Password"
+                            onChange={handleChange}
+                            value={password} 
+                            required
+                        />
+                        <i className={styles.eyeIcon} onClick={togglePasswordVisiblity}>
+                            {
+                                passwordShown ? <EyeIcon/> : <EyeOffIcon/>
+                            }
+                        </i>
+                        <div className={styles.buttonContainer}>
+                            <button 
+                                type="submit" 
+                                className={styles.productBtn}
+                            >   Log In
+                            </button>
+
+                            <button
+                                type="button"
+                                disabled={ !currentUser }
+                                className={styles.productBtn}
+                            >   Log out
+                            </button>                               
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="exampleInputPassword1">Password {'\u00A0'} {'\u00A0'} {'\u00A0'} {'\u00A0'} {'\u00A0'} {'\u00A0'} {'\u00A0'} {'\u00A0'} {'\u00A0'} {'\u00A0'} {'\u00A0'} {'\u00A0'} {'\u00A0'} {'\u00A0'} {'\u00A0'} {'\u00A0'} {'\u00A0'} {'\u00A0'} Forgot your password? </label>
-                            <input type="password" ref={passwordRef} className="form-control" id="exampleInputPassword1" placeholder="Password"></input>
-                            <div className="form-group my-3">
+                        <div className={styles.registerContainer}>
+                        <hr />
+                            <p className='text-center'>Don't have an accout?</p>
+                            <Link to='/register'>
                                 <button 
                                     type="button" 
-                                    onClick={handleLogIn}
-                                    className={styles.productBtn}
-                                >   Log In
+                                    disabled={ currentUser }
+                                    className={styles.registerBtn}
+                                >   Create a new account
                                 </button>
-                                <Link>
-                                    <img 
-                                        className={styles.headerLogo} 
-                                        src={logo} 
-                                        alt="logo"
-                                    />
-                                </Link>
-                            </div>
-                        </div>
+                            </Link>
+
+                            <Link to={'/'}>
+                                <img 
+                                    className={styles.formLogo} 
+                                    src={logo} 
+                                    alt="logo"
+                                />
+                            </Link>
+                        </div>   
                     </div>
-                    <div className="form-check"></div>
-                    <button 
-                        type="button" 
-                        disabled={ loading || currentUser }
-                        onClick={handleRegister}
-                        className={styles.productBtn}
-                    >   Create your Amazon account
-                    </button>
-
-                    <button
-                        type="button"
-                        disabled={ loading || !currentUser }
-                        onClick={handleLogOut}
-                        className={styles.productBtn}
-                    >   Log out
-                    </button>
-
                 </form> 
             </div>
         </div>
     </div>
-    }
+   
     <Footer/>
     </>
     )
@@ -168,7 +186,3 @@ function Login() {
 export default Login
 
 
-// <p>
-// By signing-in you agree to the AMAZON FAKE CLONE Conditions of Use & Sale. Please
-// see our Privacy Notice, our Cookies Notice and our Interest-Based Ads Notice.
-// </p>
