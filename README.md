@@ -18,7 +18,7 @@ This is Fake Shop, it is an application that search for products and let you add
     Project created for Final Frontend Super Guide
     <br />
     <br />
-    <a href=>Live Demo</a>
+    <a href='https://e-app-8e18f.web.app/'>Live Demo</a>
     <a href="https://github.com/davide-lombardo/fake-shop/issues">Report Bug</a>
   </p>
 </p>
