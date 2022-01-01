@@ -1,9 +1,6 @@
 import { useEffect } from "react"
 
 import styles from '../style/SingleProduct.module.scss'
-//import { TrashIcon } from '@heroicons/react/solid';
-
-//import { StarIcon } from '@heroicons/react/solid';
 
 import Loading from '../components/Loading'
 import Header from "../components/Header";
@@ -14,14 +11,13 @@ import PropTypes from 'prop-types'
 import { useParams, Link } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSingleProduct, setLoading, addToBasket } from '../redux/actions/productActions'
+import { fetchSingleProduct, setLoading } from '../redux/actions/productActions'
 
 
 const SingleProduct = () => {
 
-  const { product } = useSelector(state => ({...state.shop}))
-  const { loading } = useSelector(state => ({...state.shop}))
-  //const { basket } = useSelector(state => ({ ...state.shop}))
+  const { product } = useSelector(state => ({...state.singleProduct}))
+  const { loading } = useSelector(state => ({...state.singleProduct}))
   const { id } = useParams()
 
   const dispatch = useDispatch();
@@ -31,10 +27,6 @@ const SingleProduct = () => {
     dispatch(fetchSingleProduct(id));
   }, [id, dispatch])
 
-  const addToCart = () => {
-    dispatch(addToBasket(id))
-  }
-
  const { 
     title, 
     image, 
@@ -43,7 +35,6 @@ const SingleProduct = () => {
     price,
  } = product
 
-// const { rating: {rate} } = product
 
   return (
     <>
@@ -59,29 +50,19 @@ const SingleProduct = () => {
                 </div>
                 <div className='col-md-6 col-sm-12'> 
                     <div className={styles.infoContainer}>
-                        <h3>{title}</h3>
-                        <article className={styles.ratingContainer}>
-                           
-                        </article>
-                    
+                        <h3 className={styles.title}>{title}</h3>        
                         <article >
-                            <h4><p className={styles.priceTag}>$ {price}</p></h4>
+                            <h4 className={styles.priceTag}>$ {price}</h4>
                             <h4 className={styles.categoryTag}>{category}</h4>
-                            <p>{description}</p>                        
+                            <p className={styles.desc}>{description}</p>                        
                         </article>
 
-                        <div className={styles.buttonContainer} tabIndex="0">
+                        <div className={styles.buttonContainer}>
                             <Link to='/'>
                                 <button className={styles.productBtn}>
                                     Back Home
                                 </button>
                             </Link>
-                            <button 
-                                type="button" 
-                                onClick={addToCart} 
-                                className={styles.productBtn}
-                            >   Add to basket
-                            </button>  
                         </div>
                     </div> 
                 </div>

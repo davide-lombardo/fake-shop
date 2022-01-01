@@ -1,63 +1,40 @@
 import axios from 'axios'
 import {
-    FETCH_PRODUCTS_HOME,
-    FETCH_PRODUCTS,
-    FETCH_SINGLE_PRODUCT, 
+    FETCH_SINGLE_PRODUCT_START,
+    FETCH_SINGLE_PRODUCT_SUCCESS,
+    FETCH_SINGLE_PRODUCT_FAIL,
+    FETCH_PRODUCTS_START,
+    FETCH_PRODUCTS_SUCCESS,
+    FETCH_PRODUCTS_FAIL, 
     LOADING,
-    SET_USER,
     ADD_TO_BASKET,
     REMOVE_FROM_BASKET,
     CHANGE_CART_QTY,
 } from './actionTypes';
 
 
-export const fetchProductsHome = (dispatch) => {
-    axios
-       .get(`https://fakestoreapi.com/products`)
-       .then(response =>
-               dispatch({
-                   type: FETCH_PRODUCTS_HOME,
-                   payload: response.data,
-               })
-           ) 
-           .catch(err => console.log(err))  
-}
+const fetchSingleProductStart = () => ({
+    type: FETCH_SINGLE_PRODUCT_START,
+})
+  
+const fetchSingleProductFail = (error) => ({
+    type: FETCH_SINGLE_PRODUCT_FAIL,
+    payload: error,
+})
 
-export const fetchProducts = (query) => (dispatch) => {
-    axios
-       .get(`https://fakestoreapi.com/products/category/${query}`)
-       .then(response =>
-               dispatch({
-                   type: FETCH_PRODUCTS,
-                   payload: response.data,
-               })
-           ) 
-           .catch(err => console.log(err))  
-}
-
-export const fetchSingleProduct = (id) => (dispatch) => {
-   axios
-       .get(`https://fakestoreapi.com/products/${id}`)
-       .then(response =>
-           dispatch({
-               type: FETCH_SINGLE_PRODUCT,
-               payload: response.data,
-           })
-       )
-       .catch(err => console.log(err));
-};
-
+const fetchProductsStart = () => ({
+    type: FETCH_PRODUCTS_START,
+})
+  
+const fetchProductsFail = (error) => ({
+    type: FETCH_PRODUCTS_FAIL,
+    payload: error,
+})
 
 export const setLoading = () => {
-   return {
-       type: LOADING,
-   }      
-}
-
-export const setUser = () => {
     return {
-        type: SET_USER,
-    }
+        type: LOADING,
+    }      
 }
 
 export const addToBasket = (itemId) => {
@@ -86,37 +63,34 @@ export const changeCardQty = (itemId, value) => {
     }
 }
 
+export const fetchProducts = (query) => (dispatch) => {
+    dispatch(fetchProductsStart())
+    axios
+       .get(`https://fakestoreapi.com/products/category/${query}`)
+       .then(response =>
+               dispatch({
+                   type: FETCH_PRODUCTS_SUCCESS,
+                   payload: response.data,
+               })
+           ) 
+           .catch(err => dispatch(fetchProductsFail(err.message)))  
+}
 
-export const saveToLocalStorage = (state) => {
-    try {
-      localStorage.setItem('state', JSON.stringify(state));
-    } catch (e) {
-      console.error(e);
-    }
-  };
-  
-export const loadFromLocalStorage = () => {
-    try {
-        const stateStr = localStorage.getItem('state');
-        return stateStr ? JSON.parse(stateStr) : undefined;
-    } catch (err) {
-        console.error(err);
-        return undefined;
-    }
+export const fetchSingleProduct = (id) => (dispatch) => {
+   dispatch(fetchSingleProductStart())
+   axios
+       .get(`https://fakestoreapi.com/products/${id}`)
+       .then(response =>
+           dispatch({
+               type: FETCH_SINGLE_PRODUCT_SUCCESS,
+               payload: response.data,
+           })
+       )
+       .catch(err => dispatch(fetchSingleProductFail(err.message)))
 };
 
-// export const saveBaskestToStorage = (itemId) => {
-//     return {
-//         type: REMOVE_FROM_BASKET,
-//         payload: itemId,
-//     }
-// }
 
-// const basketFromLocalStorage = JSON.parse(localStorage.getItem('products') || '[]')
 
-// useEffect(() => {
-//     localStorage.setItem('basket', JSON.stringify(basket))   
-// }, [basket])
 
-// const basketFromLocalStorage = localStorage.getItem('basket')
-// return basketFromLocalStorage ? JSON.parse(basketFromLocalStorage) : []
+
+

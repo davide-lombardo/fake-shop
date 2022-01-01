@@ -1,4 +1,5 @@
 @import './variables.scss';
+@import 'mixins';
 
 .imgContainer {
   display: flex;
@@ -14,28 +15,44 @@
 .infoContainer {
   padding-left: 30px;
   border-left: 1px solid grey;
-}
 
-.ratingContainer {
-  display: flex;
-  justify-content: flex-start;
-  gap: 15px;
-}
+  .title {
+    letter-spacing: $mainSpacing;
+    line-height: 1.6;
+  }
 
-.priceTag {
-  background-color: #59A5D8;
-  color: $neutralColorTwo;
-  text-align: center;
-  padding: 0.65rem;
-  border-radius: 50%;
-  max-width: 100px;
-}
+  .priceTag {
+    background-color: $primaryColorDark;
+    color: $neutralColorTwo;
+    text-align: center;
+    padding: 0.65rem;
+    border-radius: 50%;
+    max-width: 100px;
+  }
 
-.categoryTag {
-  background-color: #C3DBC5;
-  padding: 0.85rem;
-  width: 100%;
-  border-radius: 5px;
+  .starIcon {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 80px;
+    padding: 0.85rem;
+    margin: 10px 0;
+    border-radius: 5px;
+    background-color: $mainGrey;
+  }
+  
+  .categoryTag {
+    background-color: $mainGrey;
+    padding: 0.85rem;
+    width: 100%;
+    border-radius: 5px;
+  }
+  
+  .desc {
+    letter-spacing: $mainSpacing;
+    line-height: 1.6;
+  }
+
 }
   
 .buttonContainer {
@@ -57,16 +74,19 @@
   
   .productBtn:hover {
     background-color: #ffa44e;
-    transition: ease-in-out 0.2s;
+    transition: $mainTransition;
   }
 
 }
 
-
-@media screen and (min-width: 992px) {
+@media screen and (max-width: 752px) {
   .imgContainer {
     width: 95vw;
     max-width: 1170px;
+  }
+
+  .infoContainer {
+    border: none;
   }
 }
 

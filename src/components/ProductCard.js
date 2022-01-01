@@ -1,4 +1,4 @@
-import styles from '../style/Product.module.scss'
+import styles from '../style/ProductCard.module.scss'
 
 import PropTypes from 'prop-types'
 
@@ -9,7 +9,7 @@ import { addToBasket } from '../redux/actions/productActions'
 
 const ProductCard = () => {
 
-    const { products } = useSelector(state => ({...state.products}))
+    const { products } = useSelector(state => ({...state.shop}))
   
     const dispatch = useDispatch();
 

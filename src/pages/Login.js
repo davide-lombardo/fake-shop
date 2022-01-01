@@ -1,26 +1,24 @@
-import { useState } from 'react'
-
 import styles from '../style/Login.module.scss'
 import logo from '../images/logo.png';
-import { EyeIcon } from '@heroicons/react/outline';
-import { EyeOffIcon } from '@heroicons/react/outline';
+import { EyeIcon } from '@heroicons/react/outline'
+import { EyeOffIcon } from '@heroicons/react/outline'
+import { Alert } from 'react-bootstrap'
 
+
+import { useState, useEffect } from 'react'
 
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 
 import { useSelector, useDispatch } from 'react-redux'
-
-import { Link } from 'react-router-dom'
-
-//import { useFirebase } from "react-redux-firebase";
-//import { logOut, logIn, signIn } from '../firebaseConfig'
+import { Link, useNavigate } from 'react-router-dom'
 import { loginInitiate } from '../redux/actions/authActions'
-
+import { setLoading } from '../redux/actions/productActions';
 
 
 const Login = () => {
 
+    const [ error, setError ] = useState('')
     const [ state, setState ] = useState({
         email: '',
         password: '',
@@ -28,7 +26,9 @@ const Login = () => {
 
     const { email, password } = state
 
-    const { currentUser } = useSelector((state) => state.login)
+    const { currentUser } = useSelector(state => ({ ...state.user}))
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const [ passwordShown, setPasswordShown ] = useState(false)
 
@@ -36,60 +36,32 @@ const Login = () => {
         setPasswordShown(passwordShown ? false : true);
     };
 
-    const dispatch = useDispatch()
-
-    // const firebase = useFirebase()
-
-    // const emailRef = useRef()
-    // const passwordRef = useRef()
+    useEffect(() => {
+        if(currentUser) {
+            navigate("/")   
+        }
+    }, [navigate, currentUser])
     
     const handleSubmit = (event) => {
         event.preventDefault()
-        if( !email || !password ) {
-            return
+        
+        try {
+            setError('')
+            setLoading(true)
+
+            dispatch(loginInitiate(email, password))
+            
+        } catch {
+            setError('Failed to log in')
         }
-        dispatch(loginInitiate(email, password))
+        setLoading(false)
         setState({email: '', password: ''})
     }
 
     const handleChange = (event) => {
         let { name, value } = event.target
         setState({ ...state, [name]: value })
-
     }
-
-
-    // async function handleRegister() {
-        
-    //     try {
-    //         await signIn(emailRef.current.value, passwordRef.current.value)
-    //     } catch {
-    //         alert('error')
-    //     }
-      
-    // }
-
-    // async function handleLogOut() {
-       
-    //     try {
-    //         await logOut()
-    //     } catch {
-    //         alert('error')
-    //     }
-     
-    // }
-
-    // async function handleLogIn() {
-        
-    //     try {
-    //         await logIn(emailRef.current.value, passwordRef.current.value)
-    //     } catch {
-    //         alert('error')
-    //     }
-       
-    // }
-
-  
 
 
     return (
@@ -98,59 +70,55 @@ const Login = () => {
 
     <div className="d-flex flex-row justify-content-center my-3">
 
-        <div>Curruently logged in as: {currentUser?.email}</div>
-
         <div className="row">
             <div className="col-md">
+                {error && <Alert variant='danger'>{error}</Alert>}
                 <form className={styles.formContainer} onSubmit={handleSubmit}>
                     <h2 className="text-center">Log in</h2>
                     
                     <div className="form-group my-3">
-                        <label htmlFor="exampleInputEmail1">Email</label>
+                        <label htmlFor="InputEmail">Email</label>
                         <input 
                             type="email" 
                             name="email"
-                            className="form-control my-2" 
+                            className="form-control my-2 p-3" 
                             id="inputEmail" 
-                            aria-describedby="emailHelp" 
                             placeholder="Email Address"
                             value={email} 
                             onChange={handleChange}
                             required 
-                        />
+                        >
+                        </input>
                         <small id="emailHelp" className="form-text text-m.signInuted"></small>
-                    </div>
+                    
 
-                    <div className="form-group">
-                        <label htmlFor="exampleInputPassword1">Password</label>
-                        <input 
-                            type={passwordShown ? "text" : "password"}
-                            name="password"
-                            className="form-control my-2" 
-                            id="inputPassword" 
-                            placeholder="Password"
-                            onChange={handleChange}
-                            value={password} 
-                            required
-                        />
-                        <i className={styles.eyeIcon} onClick={togglePasswordVisiblity}>
-                            {
-                                passwordShown ? <EyeIcon/> : <EyeOffIcon/>
-                            }
-                        </i>
+                        <div className={styles.inputContainer}>
+                            <i className={styles.eyeIcon} onClick={togglePasswordVisiblity}>
+                                {
+                                    passwordShown ? <EyeIcon/> : <EyeOffIcon/>
+                                }
+                            </i>
+                            <label htmlFor="InputPassword">Password</label>
+                            <input 
+                                type={passwordShown ? "text" : "password"}
+                                name="password"
+                                className="form-control my-2 p-3" 
+                                id="inputPassword" 
+                                placeholder="Password"
+                                onChange={handleChange}
+                                value={password} 
+                                required
+                            >
+                            </input>
+                        </div>
+            
+                   
                         <div className={styles.buttonContainer}>
                             <button 
-                                type="submit" 
+                                type="submit"
                                 className={styles.productBtn}
                             >   Log In
-                            </button>
-
-                            <button
-                                type="button"
-                                disabled={ !currentUser }
-                                className={styles.productBtn}
-                            >   Log out
-                            </button>                               
+                            </button>                       
                         </div>
                         <div className={styles.registerContainer}>
                         <hr />

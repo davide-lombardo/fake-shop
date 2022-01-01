@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import styles from '../style/Checkout.module.scss'
-import { Button, ListGroup } from "react-bootstrap";
+import { Container, Button, ListGroup } from "react-bootstrap";
 
 import Header from '../components/Header'
 import BasketProduct from "../components/BasketProduct";
@@ -31,7 +31,7 @@ const Checkout = () => {
     <>
     <Header/>
 
-    <div className={styles.home}>
+    <Container fluid className={styles.home}>
       <div className={styles.productContainer}>
         <ListGroup>
           {
@@ -52,7 +52,7 @@ const Checkout = () => {
           Proceed to Checkout
         </Button>
       </div>
-    </div>
+    </Container>
   </>
   );
 };

@@ -1,32 +1,19 @@
-import React from 'react';
-//import { useEffect } from "react"
+import styles from '../style/Home.module.scss'
 
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 import ProductList from '../components/ProductList'
-import styles from '../style/Home.module.scss';
 
-
-//import { useDispatch, useSelector } from "react-redux";
-//import { fetchProductsHome, setLoading } from '../redux/actions/productActions'
+import { useSelector } from 'react-redux'
 
 function Home() {
 
-    //const dispatch = useDispatch();
-
-    //const { products } = useSelector(state => ({...state.products}))
-
-    // useEffect(() => {
-    //     dispatch(setLoading())
-    //     dispatch(fetchProductsHome()); 
-    //   }, [dispatch])
-
+    const { products } = useSelector(state => ({...state.shop}))
 
     return (
-    <>
-        <div>
-            <Header/>
-        </div>
+    <>  
+        <Header/>
+     
         <div className={styles.home}>
             <div className={styles.homeContainer}>
                 <img 
@@ -36,13 +23,21 @@ function Home() {
             </div>
         </div>
 
+        {
+            (!products.length) 
+            ? 
+            <>
+                <div className={styles.emptySearch}>
+                    <h3>Unfortunately no products matched your search,</h3>
+                    <h3>please try another input</h3>
+                </div>
+            </>
+            :
+            <ProductList/>
+        }
         
-        <ProductList/> 
-        
-
-        <div>
-            <Footer/>
-        </div>
+                
+        <Footer/>
     </>
     )
 }

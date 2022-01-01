@@ -9,13 +9,20 @@
   margin-bottom: 90px;
   border-radius: 5px;
 
-  .eyeIcon {
-    display: flex;
-    width: 50px;
-  }
+  .inputContainer {
+    position: relative;
 
-  .eyeIcon:hover {
-    cursor: pointer;
+    .eyeIcon {
+      position: absolute;
+      top: 40px;
+      right: 10px;
+      z-index: 2;
+      width: 35px;
+    }
+
+    .eyeIcon:hover {
+      cursor: pointer;
+    }
   }
 
   .buttonContainer {

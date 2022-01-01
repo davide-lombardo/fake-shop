@@ -1,41 +1,39 @@
 import {
     LOADING,
-    FETCH_SINGLE_PRODUCT, 
-    FETCH_PRODUCTS_HOME,
-    FETCH_PRODUCTS,
+    FETCH_PRODUCTS_START,
+    FETCH_PRODUCTS_SUCCESS,
+    FETCH_PRODUCTS_FAIL,
     ADD_TO_BASKET,
     REMOVE_FROM_BASKET,
     CHANGE_CART_QTY,
 } from '../actions/actionTypes'
 
-export const initialState = {
+const initialState = {
     basket: [],
     products: [],
-    product: [],
     loading: false,
 }
 
 
 export default function BasketReducer(state = initialState, action) {
     switch(action.type) {
-        case FETCH_SINGLE_PRODUCT:
+        case FETCH_PRODUCTS_START: 
             return {
                 ...state,
-                product: action.payload,
-                loading: false,
-            };
-        case FETCH_PRODUCTS_HOME:
-            return {
-                ...state,
-                products: action.payload,
-                loading: false,
-            };
-        case FETCH_PRODUCTS:
+                loading: true,
+            }
+        case FETCH_PRODUCTS_SUCCESS:
                 return {
                     ...state,
-                    products: action.payload,
                     loading: false,
+                    products: action.payload,
                 };
+        case FETCH_PRODUCTS_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
+            };
         case CHANGE_CART_QTY:
             return {
                 ...state, 

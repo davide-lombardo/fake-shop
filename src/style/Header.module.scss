@@ -2,13 +2,9 @@
 @import 'mixins';
 @import 'resets';
 
-.Container {
+.navBarContainer {
     background-color: $primaryColorDark;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     min-height: 80px;
-    z-index: 100;
 
     .headerLogo {
         width: 150px;
@@ -45,22 +41,34 @@
         }
 
     }
+
+    .dropDownToggleLogin {
+        @include flexCenter;
+        background-color: $primaryColorDark;
+        border: 1px solid $primaryColorDark;
+        padding: 5px;
+        margin: 0 5px;
+    }
     
-    .dropDownTogle {
+    .dropDownToggleBasket {
         @include flexCenter;
         background-color: $primaryColorDark;
         border: 1px solid $primaryColorDark;
         padding: 10px;
 
+        .dropdownModalBasket {
+            background-color: blue;
+        }
         .headerBasket {
             width: 40px; 
             color: $neutralColorTwo;
             text-decoration: none;
             border: 1px solid $primaryColorDark;
         }
-
-    }
+    }  
 }
+
+
 
 .dropDownTogle:hover {
     background-color: $primaryColorDark;
@@ -87,7 +95,7 @@
         object-fit: contain;
     }
     
-        .cartItemDetail {
+    .cartItemDetail {
         display: flex;
         flex: 1;
         font-size: 15px;
@@ -120,7 +128,12 @@
 }
 
 
-
+@media screen and (max-width: 782px) {
+    .headerLogo {
+      display: none;
+    }
+  }
+  
 
 
 

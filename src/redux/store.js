@@ -1,9 +1,9 @@
 import { createStore, compose, applyMiddleware } from 'redux';
 import allReducers from './reducers/index';
 import thunk from 'redux-thunk';
-import { saveState, loadState } from './actions/LocalStorage';
+import { saveState, loadState } from './actions/localStorageActions';
 
-//const initialState = {}
+
 const persistedState = loadState()
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -20,7 +20,7 @@ const store = createStore(
 
 store.subscribe(() => {
     saveState({
-        shop: store.getState().shop
+        shop: store.getState().shop,
     })
 }) 
 

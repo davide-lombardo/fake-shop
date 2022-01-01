@@ -1,6 +1,5 @@
 
 import {
-    LOADING,
     REGISTER_START,
     REGISTER_SUCCESS, 
     REGISTER_FAIL, 
@@ -9,10 +8,11 @@ import {
     LOGIN_FAIL,
     LOGOUT_START, 
     LOGOUT_SUCCESS, 
-    LOGOUT_FAIL 
+    LOGOUT_FAIL,
+    SET_USER, 
 } from '../actions/actionTypes'
 
-export const initialState = {
+const initialState = {
     currentUser: null,
     loading: false,
     error: null,
@@ -32,6 +32,12 @@ export default function LoginReducer(state = initialState, action) {
             ...state,
             currentUser: null,
         }
+        case SET_USER:
+        return {
+            ...state,
+            loading: false,
+            currentUser: action.payload,
+        }
         case REGISTER_SUCCESS:
         case LOGIN_SUCCESS: 
             return {
@@ -47,11 +53,6 @@ export default function LoginReducer(state = initialState, action) {
                 loading: false,
                 error: action.payload
             }
-        case LOADING:
-            return {
-                ...state,
-                loading: true,
-            };    
         default:
             return state
     }

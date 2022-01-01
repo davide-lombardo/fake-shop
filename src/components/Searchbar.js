@@ -31,7 +31,7 @@ const Searchbar = () => {
             >
                 <input
                     type='text'
-                    placeholder='Search a product' 
+                    placeholder='Search a category' 
                     value={search} 
                     className={styles.headerSearchInput}
                     onChange={handleChange} 

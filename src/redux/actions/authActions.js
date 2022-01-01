@@ -1,5 +1,4 @@
-//import { useState, useEffect } from 'react'
-
+import { auth } from "../../firebaseConfig"
 
 import { 
   LOGIN_START,
@@ -11,51 +10,56 @@ import {
   REGISTER_START,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
+  SET_USER,
 } from "./actionTypes";
 
 
-import { auth } from "../../firebaseConfig"
 
-
-export const registerStart = () => ({
+const registerStart = () => ({
   type: REGISTER_START,
 })
 
-export const registerSucces = (user) => ({
+const registerSucces = (user) => ({
   type: REGISTER_SUCCESS,
   payload: user,
 })
 
-export const registerFail = (error) => ({
+const registerFail = (error) => ({
   type: REGISTER_FAIL,
   payload: error,
 })
 
-export const loginStart = () => ({
+const loginStart = () => ({
   type: LOGIN_START,
 })
 
-export const loginSuccess = (user) => ({
+const loginSuccess = (user) => ({
   type: LOGIN_SUCCESS,
   payload: user,
 })
 
-export const loginFail = (error) => ({
+const loginFail = (error) => ({
   type: LOGIN_FAIL,
   payload: error,
 })
 
-export const logoutStart = () => ({
+const logoutStart = () => ({
   type: LOGOUT_START,
 })
 
-export const logoutSuccess = () => ({
+const logoutSuccess = () => ({
   type: LOGOUT_SUCCESS,
 })
 
-export const logoutFail = (error) => ({
+const logoutFail = (error) => ({
   type: LOGOUT_FAIL,
   payload: error,
+})
+
+
+export const setUser = (user) => ({
+  type: SET_USER,
+  payload: user,
 })
 
 export const registerInitiate = (email, password, displayName) => {
@@ -67,7 +71,7 @@ export const registerInitiate = (email, password, displayName) => {
         user.updateProfile({
           displayName
         })
-        dispatch(registerSucces({user}))
+        dispatch(registerSucces(user))
       })
       .catch((err) => dispatch(registerFail(err.message)))
   }
@@ -78,7 +82,7 @@ export const loginInitiate = (email, password) => {
     dispatch(loginStart())
     auth
       .signInWithEmailAndPassword(email, password)
-      .then(({ user }) => {
+      .then(({ user })  => {
         dispatch(loginSuccess(user))
       })
       .catch((err) => dispatch(loginFail(err.message)))
@@ -90,7 +94,7 @@ export const logoutInitiate = () => {
     dispatch(logoutStart())
     auth
       .signOut()
-      .then((response) => dispatch(logoutSuccess()))
+      .then((resp) => dispatch(logoutSuccess()))
       .catch((err) => dispatch(logoutFail(err.message)))
   }
 }
