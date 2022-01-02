@@ -5,7 +5,6 @@ import Login from './pages/Login'
 import Checkout from './pages/Checkout'
 import Register from './pages/Register'
 import SingleProduct from './pages/SingleProduct'
-import NotFound from './pages/NotFound';
 
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
@@ -31,7 +30,6 @@ function App() {
   return (
   <>
     <Routes>
-      <Route path='*' element={<NotFound/>} />
       <Route path='/' element={<Home/>} />
       <Route path='/login' element={<Login/>} />
       <Route path='/checkout' element={<Checkout/>} />

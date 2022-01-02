@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import styles from '../style/Checkout.module.scss'
-import { Container, Button, ListGroup } from "react-bootstrap";
+import { Container, Row, Col, Button, ListGroup } from "react-bootstrap";
 
 import Header from '../components/Header'
 import BasketProduct from "../components/BasketProduct";
@@ -32,26 +32,31 @@ const Checkout = () => {
     <Header/>
 
     <Container fluid className={styles.home}>
-      <div className={styles.productContainer}>
-        <ListGroup>
-          {
-            basket.map((item, index) => (
-              <BasketProduct key={index} item={item}/>
-            ))
-          }
-        </ListGroup>
-      </div>
-      <div className={styles.filters}>
-        <span className={styles.subtotal}>Subtotal: ({totalItems} items)</span><br/>
-        <span className={styles.total} >Total: $ {totalPrice}</span>
-        <Button 
-          className={styles.checkoutBtn} 
-          type="button" 
-          disabled={basket.length === 0}
-        >
-          Proceed to Checkout
-        </Button>
-      </div>
+      <Row>
+        <Col>
+          <div className={styles.productContainer}>
+            <ListGroup>
+              {
+                basket.map((item, index) => (
+                  <BasketProduct key={index} item={item}/>
+                ))
+              }
+            </ListGroup>
+          </div>
+        </Col>
+
+        <Col className={styles.filters}>
+          <span className={styles.subtotal}>Subtotal: ({totalItems} items)</span><br/>
+          <span className={styles.total} >Total: $ {totalPrice}</span>
+          <Button 
+            className={styles.checkoutBtn} 
+            type="button" 
+            disabled={basket.length === 0}
+          >
+            Proceed to Checkout
+          </Button>
+        </Col>
+      </Row>
     </Container>
   </>
   );
