@@ -1,0 +1,108 @@
+@import '../../style/variables';
+@import '../../style/mixins';
+
+.flexContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  .main {
+    display: flex;
+    flex: 1 0 auto;
+
+    .aside {
+      flex: 0 0 10vw;
+      background-color: $neutralColorOne;
+    }
+
+    .article {
+      flex: 1 1 auto;
+      padding-bottom: 100px;
+      padding-right: 30px;
+
+      .imgContainer {
+        display: flex;
+        justify-content: flex-start; 
+        margin: 50px 0 50px 50px;
+      }
+    
+      .imgContainer img {
+        max-width: 250px;
+        display: block;
+      } 
+    
+      .infoContainer {
+        padding-left: 30px;
+      
+        .title {
+          letter-spacing: $mainSpacing;
+          line-height: 1.6;
+        }
+      
+        .priceTag {
+          background-color: $primaryColorDark;
+          color: $neutralColorTwo;
+          text-align: center;
+          padding: 0.65rem;
+          border-radius: 50%;
+          max-width: 100px;
+        }
+        
+        .categoryTag {
+          background-color: $mainGrey;
+          padding: 0.85rem;
+          width: 100%;
+          border-radius: 5px;
+        }
+        
+        .desc {
+          letter-spacing: $mainSpacing;
+          line-height: 1.6;
+        }
+      }
+      
+      .buttonContainer {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 10px 20px;
+      
+        .productBtn {
+          background-color: #FF7D00;
+          color: $mainWhite;
+          border: 1px solid;
+          border-radius: 3px;
+          margin-top: 10px;
+          padding: 10px;
+          border-color: #a88734 #9c7e31 #846a29; 
+        }
+    
+        .productBtn:hover {
+          background-color: #ffa44e;
+          transition: $mainTransition;
+        }
+      }
+  }
+    .nav {
+      flex: 0 0 10vw;
+      background-color: $neutralColorOne;
+    }
+  }
+}
+
+@media screen and (max-width: 596px) {
+  .main {
+    flex-direction: column;
+  }
+
+  .imgContainer {
+    width: 95vw;
+    max-width: 1170px;
+  }
+
+  .infoContainer {
+    border: none;
+  }
+}
+
+

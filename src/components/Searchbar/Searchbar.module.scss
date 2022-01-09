@@ -1,0 +1,45 @@
+@import '../../style/variables';
+
+
+.headerSearchWrapper{
+    position: relative;
+
+    .headerSearchInput{
+        padding: 10px;
+        margin: 0;
+        outline: none;
+        height: 2.5rem;
+        border-radius: 5px;
+        font-size: 1.3rem; 
+        line-height: 30px;
+        border: 2px solid $neutralColorOne;
+    }
+
+    .headerSearchInput:focus{
+        border: 2px solid $secondaryColor;
+    }
+
+    .headerSearchBtn {
+        background-color: $secondaryColor;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 2;
+        border-radius: 5px;
+        border: none;
+        height: 2.5rem;
+        transform: translateX(2px);
+
+        .headerSearchIcon{
+            padding-bottom: 10px;
+            height: 2.5rem;
+            width: 3rem;
+        }
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .headerSearchInput {
+      width: 400px;
+    }
+  }

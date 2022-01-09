@@ -1,10 +1,10 @@
 import './App.scss';
 
-import Home from './pages/Home'
-import Login from './pages/Login'
-import Checkout from './pages/Checkout'
-import Register from './pages/Register'
-import SingleProduct from './pages/SingleProduct'
+import Home from './pages/Home/Home'
+import Login from './pages/Login/Login'
+import Checkout from './pages/Checkout/Checkout'
+import Register from './pages/Register/Register'
+import SingleProduct from './pages/SingleProduct/SingleProduct'
 
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux'

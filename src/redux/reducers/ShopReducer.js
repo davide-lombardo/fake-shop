@@ -1,5 +1,8 @@
 import {
     LOADING,
+    FETCH_SINGLE_PRODUCT_START,
+    FETCH_SINGLE_PRODUCT_SUCCESS,
+    FETCH_SINGLE_PRODUCT_FAIL, 
     FETCH_PRODUCTS_START,
     FETCH_PRODUCTS_SUCCESS,
     FETCH_PRODUCTS_FAIL,
@@ -11,12 +14,20 @@ import {
 const initialState = {
     basket: [],
     products: [],
+    singleProduct: [],
     loading: false,
 }
 
 
 export default function BasketReducer(state = initialState, action) {
     switch(action.type) {
+        case FETCH_SINGLE_PRODUCT_SUCCESS:
+            return {
+                ...state,
+                singleProduct: action.payload,
+                loading: false,
+            };
+        case FETCH_SINGLE_PRODUCT_START:
         case FETCH_PRODUCTS_START: 
             return {
                 ...state,
@@ -25,9 +36,10 @@ export default function BasketReducer(state = initialState, action) {
         case FETCH_PRODUCTS_SUCCESS:
                 return {
                     ...state,
-                    loading: false,
                     products: action.payload,
+                    loading: false,
                 };
+        case FETCH_SINGLE_PRODUCT_FAIL:
         case FETCH_PRODUCTS_FAIL:
             return {
                 ...state,

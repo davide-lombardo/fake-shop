@@ -1,0 +1,24 @@
+@import '../../style/variables';
+
+
+.footer {
+    flex: 0 0 10vh;
+    width: 100%;
+    background-color: $primaryColorDark;
+
+    .footerLogo {
+        float: right;
+        width: 60px;
+        margin: 20px;
+        object-fit: contain;
+    }
+}
+
+.linkText {
+    color: white;
+    margin-left: 5px;
+}
+
+.linkText:hover {
+    color: $secondaryColor;
+}

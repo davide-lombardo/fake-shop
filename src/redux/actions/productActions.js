@@ -77,17 +77,20 @@ export const fetchProducts = (query) => (dispatch) => {
 }
 
 export const fetchSingleProduct = (id) => (dispatch) => {
-   dispatch(fetchSingleProductStart())
-   axios
-       .get(`https://fakestoreapi.com/products/${id}`)
-       .then(response =>
-           dispatch({
-               type: FETCH_SINGLE_PRODUCT_SUCCESS,
-               payload: response.data,
-           })
-       )
-       .catch(err => dispatch(fetchSingleProductFail(err.message)))
-};
+    dispatch(fetchSingleProductStart())
+    axios
+        .get(`https://fakestoreapi.com/products/${id}`)
+        .then(response =>
+            dispatch({
+                type: FETCH_SINGLE_PRODUCT_SUCCESS,
+                payload: response.data,
+            })
+        )
+        .catch(err => dispatch(fetchSingleProductFail(err.message)))
+ };
+ 
+
+
 
 
 

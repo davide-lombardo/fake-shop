@@ -1,0 +1,140 @@
+@import '../../style/variables';
+@import '../../style/mixins';
+@import '../../style/resets';
+
+.navBarContainer {
+    background-color: $primaryColorDark;
+    flex: 0 0 20vh;
+
+    .headerLogo {
+        width: 150px;
+        margin: 0 20px;
+        margin-top: 18px;
+        object-fit: contain;
+    }
+
+    .headerNav {
+        display: flex;
+        justify-content: space-evenly;
+    
+        .headerOption {
+            display: flex;
+            flex-direction: column;
+            margin: 0px 10px;
+            color: $mainWhite;
+            text-decoration: none;
+            border: 1px solid $primaryColorDark;
+            padding: 8px;
+            
+            .headerOptionLineOne {
+                font-size: 10px;
+            }
+            .headerOptionLineTwo {
+                font-size: 13px;
+                font-weight: 800;
+            }
+        }
+    
+        .headerOption:hover {
+            border: 1px solid white;
+            border-radius: 5px;
+        }
+
+    }
+
+    .dropDownToggleLogin {
+        @include flexCenter;
+        background-color: $primaryColorDark;
+        border: 1px solid $primaryColorDark;
+        padding: 5px;
+        margin: 0 5px;
+    }
+    
+    .dropDownToggleBasket {
+        @include flexCenter;
+        background-color: $primaryColorDark;
+        border: 1px solid $primaryColorDark;
+        padding: 10px;
+
+        .dropdownModalBasket {
+            background-color: blue;
+        }
+        .headerBasket {
+            width: 40px; 
+            color: $neutralColorTwo;
+            text-decoration: none;
+            border: 1px solid $primaryColorDark;
+        }
+    }  
+}
+
+
+
+.dropDownTogle:hover {
+    background-color: $primaryColorDark;
+    border: 1px solid white; 
+    border-radius: 5px;
+}
+
+.cartItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    margin-right: 5px; 
+    margin-bottom: 20px;
+
+    .cartItemImg {
+        border: 2px solid $mainGrey;
+        padding: 5px;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
+    }
+    
+    .cartItemDetail {
+        display: flex;
+        flex: 1;
+        font-size: 15px;
+        padding: 0 20px;
+        flex-direction: column;
+
+        .cartItemTitle {
+            position: relative;
+            display: inline-block;
+            padding-top: 10px;
+            font-weight: bold;
+            max-width: 220px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 0.85rem;
+        }
+
+    }
+    
+    .TrashIcon {
+        display: flex;
+        width: 25px;
+    }
+
+    .TrashIcon:hover {
+        @include hoverDelete;
+    }
+
+}
+
+
+@media screen and (max-width: 782px) {
+    .headerLogo {
+      display: none;
+    }
+  }
+  
+
+
+
+
+
+
