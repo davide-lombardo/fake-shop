@@ -15,7 +15,7 @@ const Footer = () => {
             </Link>
 
             <div className="text-light text-center p-3">
-                © 2021 Copyright: Davide Lombardo
+                © 2022 Copyright: Davide Lombardo
                 <a className={styles.linkText} href="https://github.com/davide-lombardo">Github Profile</a>
             </div>
         </footer>
