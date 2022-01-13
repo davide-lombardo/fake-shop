@@ -32,7 +32,7 @@ export default function BasketReducer(state = initialState, action) {
             return {
                 ...state,
                 loading: true,
-            }
+            };
         case FETCH_PRODUCTS_SUCCESS:
                 return {
                     ...state,
