@@ -4,7 +4,7 @@ import Home from './pages/Home/Home'
 import Login from './pages/Login/Login'
 import Checkout from './pages/Checkout/Checkout'
 import Register from './pages/Register/Register'
-import SingleProduct from './pages/SingleProduct/SingleProduct'
+import ProductDetail from './pages/ProductDetail/ProductDetail'
 
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
@@ -34,7 +34,7 @@ function App() {
       <Route path='/login' element={<Login/>} />
       <Route path='/checkout' element={<Checkout/>} />
       <Route path='/register' element={<Register/>} />
-      <Route path='/:id' element={<SingleProduct/>} />
+      <Route path='/:id' element={<ProductDetail/>} />
     </Routes> 
   </>
   );

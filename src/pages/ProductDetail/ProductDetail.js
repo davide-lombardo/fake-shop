@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 
-import styles from './SingleProduct.module.scss'
+import styles from './ProductDetail.module.scss'
 
 import Loading from '../../components/Loading/Loading'
 import Footer from "../../components/Footer/Footer";
@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchSingleProduct, setLoading } from '../../redux/actions/productActions'
 
 
-const SingleProduct = () => {
+const ProductDetail = () => {
 
   const { singleProduct } = useSelector(state => ({...state.shop}))
   const { loading } = useSelector(state => ({...state.shop}))
@@ -26,6 +26,7 @@ const SingleProduct = () => {
     dispatch(fetchSingleProduct(id))
   }, [dispatch, id])
 
+    
   
  const { 
     title, 
@@ -82,7 +83,7 @@ const SingleProduct = () => {
 
 
 
-SingleProduct.defaultProps = {
+ProductDetail.defaultProps = {
     title: '',
     image: '',
     id: 0,
@@ -92,7 +93,7 @@ SingleProduct.defaultProps = {
     rate: 0,
 }
 
-SingleProduct.propTypes = {
+ProductDetail.propTypes = {
     title: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
@@ -102,4 +103,4 @@ SingleProduct.propTypes = {
     description: PropTypes.string.isRequired,
 }
 
-export default SingleProduct
+export default ProductDetail
