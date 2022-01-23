@@ -9,13 +9,13 @@ import {
     LOGOUT_SUCCESS, 
     LOGOUT_FAIL,
     SET_USER, 
-} from '../actions/actionTypes'
+} from '../actions/actionTypes';
 
 const initialState = {
     currentUser: null,
     loading: false,
     error: null,
-}
+};
 
 export default function LoginReducer(state = initialState, action) {
     switch(action.type) {

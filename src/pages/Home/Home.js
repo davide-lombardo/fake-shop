@@ -6,7 +6,7 @@ import ProductList from '../../components/ProductList/ProductList'
 
 import { useSelector } from 'react-redux'
 
-function Home() {
+const Home = () => {
 
     const { products } = useSelector(state => ({...state.shop}))
 
@@ -27,13 +27,13 @@ function Home() {
                 </div>
                
                 {
-                    (!products.length) 
+                    (!products?.length) 
                     ? 
                     <>
                         <div className={styles.emptySearch}>
                             <p>
-                            Unfortunately no products matched your search,
-                            please try another input
+                                Unfortunately no products matched your search,
+                                please try another input
                             </p>
                         </div>
                     </>

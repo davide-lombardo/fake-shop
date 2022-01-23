@@ -1,23 +1,23 @@
-import { useEffect } from "react"
+import { useEffect } from "react";
 
-import styles from './ProductDetail.module.scss'
+import styles from './ProductDetail.module.scss';
 
-import Loading from '../../components/Loading/Loading'
+import Loading from '../../components/Loading/Loading';
 import Footer from "../../components/Footer/Footer";
 
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 import { useParams, Link } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSingleProduct, setLoading } from '../../redux/actions/productActions'
+import { fetchSingleProduct, setLoading } from '../../redux/actions/productActions';
 
 
 const ProductDetail = () => {
 
-  const { singleProduct } = useSelector(state => ({...state.shop}))
-  const { loading } = useSelector(state => ({...state.shop}))
-  const { id } = useParams()
+  const { singleProduct } = useSelector(state => ({...state?.single}));
+  const { loading } = useSelector(state => ({...state.single}));
+  const { id } = useParams();
 
   const dispatch = useDispatch();
 

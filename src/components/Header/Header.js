@@ -33,13 +33,13 @@ const Header = () => {
 
     useEffect(() => {
         let count = 0;
-        basket.forEach((item) => { count += item.qty; });
+        basket?.forEach((item) => { count += item.qty; });
 
         setBasketCount(count);
     }, [basket, basketCount, currentUser]);
 
 
-    const basketList = basket.map((product, index) => {
+    const basketList = basket?.map((product, index) => {
 
         const { id, title, image, price } = product
 
@@ -119,7 +119,7 @@ const Header = () => {
                         </Dropdown.Toggle>
                         <Dropdown.Menu fluid align={{ lg: 'end' }}>
                         {
-                            basket.length > 0 ? (
+                            basket?.length > 0 ? (
                                 <>
                                     {basketList}
                                     <Link to="/checkout">

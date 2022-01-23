@@ -4,9 +4,8 @@ import thunk from 'redux-thunk';
 import { saveState, loadState } from './actions/localStorageActions';
 
 
-const persistedState = loadState()
+const persistedState = loadState();
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
 
 const store = createStore(
     allReducers,

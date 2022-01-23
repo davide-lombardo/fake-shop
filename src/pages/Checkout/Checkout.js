@@ -30,21 +30,17 @@ const Checkout = () => {
   return (
   <>
     <div className={styles.flexContainer}>
-
       <div className={styles.main}>
-
         <div className={styles.aside}></div>
-      
-        <div className={styles.productContainer}>
-          <ListGroup>
-            {
-              basket.map((item, index) => (
-                <BasketProduct key={index} item={item}/>
-              ))
-            }
-          </ListGroup>
-        </div>
-
+          <div className={styles.productContainer}>
+            <ListGroup className={styles.listGroup}>
+              {
+                basket.map((item, index) => (
+                  <BasketProduct key={index} item={item}/>
+                ))
+              }
+            </ListGroup>
+          </div>
         <div className={styles.filters}>
           <span className={styles.subtotal}>Subtotal: ({totalItems} items)</span><br/>
           <span className={styles.total} >Total: $ {totalPrice}</span>

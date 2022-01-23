@@ -1,4 +1,5 @@
-import axios from 'axios'
+import axios from 'axios';
+
 import {
     FETCH_SINGLE_PRODUCT_START,
     FETCH_SINGLE_PRODUCT_SUCCESS,
