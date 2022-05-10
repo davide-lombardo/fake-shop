@@ -2,7 +2,6 @@
 ## General Info
 This is Fake Shop, it is an application that search for products and let you adding it to a cart. I've created it using React and the API of Fake Store.
 
-[![Issues][issues-shield]][issues-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- PROJECT LOGO -->
